@@ -37,7 +37,7 @@ const deleteProductFromDB = async (id: string) => {
 };
 
 const createProductIntoDB = async (payload: Tproducts) => {
-  return Product.create(payload);
+  return await Product.create(payload);
 };
 
 const updateProductInDB = async (id: string, payload: Partial<Tproducts>) => {
