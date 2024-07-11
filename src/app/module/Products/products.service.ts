@@ -1,3 +1,4 @@
+import { Tproducts } from "./products.interface";
 import { Product } from "./products.model";
 
 const getAllProductServices = async (searchTerm?: string) => {
@@ -16,6 +17,27 @@ const getAllProductServices = async (searchTerm?: string) => {
   return result;
 };
 
+const createProductIntoDB = async (payload: Tproducts) => {
+  return Product.create(payload);
+};
+
+const updateProductInDB = async (id: string, payload: Partial<Tproducts>) => {
+  // const { size, images, ...remaining } = payload;
+  // let retunObj;
+  // if ((size && size?.length > 0) || (images && images?.length > 0)) {
+  //   retunObj = await Product.findByIdAndUpdate(
+  //     id,
+  //     { $addToSet: { size, images }, $set: remaining },
+  //     { new: true }
+  //   );
+  // } else {
+  //   retunObj = await Product.findByIdAndUpdate(id, remaining, { new: true });
+  // }
+  // return retunObj;
+  return await Product.findByIdAndUpdate(id, payload, { new: true });
+};
 export const productService = {
   getAllProductServices,
+  createProductIntoDB,
+  updateProductInDB,
 };
