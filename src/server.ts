@@ -1,9 +1,7 @@
-import { Server } from 'http';
-import mongoose from 'mongoose';
-import app from './app';
-import config from './config';
-
-// Todo if you want understand the code read my following two blogs https://dev.to/md_enayeturrahman_2560e3/how-to-handle-errors-in-an-industry-grade-nodejs-application-217b https://dev.to/md_enayeturrahman_2560e3/how-to-set-up-eslint-and-prettier-1nk6 
+import { Server } from "http";
+import mongoose from "mongoose";
+import app from "./app";
+import config from "./config";
 
 let server: Server;
 
@@ -21,7 +19,7 @@ async function main() {
 
 main();
 
-process.on('unhandledRejection', (err) => {
+process.on("unhandledRejection", (err) => {
   console.log(`😈 unahandledRejection is detected , shutting down ...`, err);
   if (server) {
     server.close(() => {
@@ -31,7 +29,7 @@ process.on('unhandledRejection', (err) => {
   process.exit(1);
 });
 
-process.on('uncaughtException', () => {
+process.on("uncaughtException", () => {
   console.log(`😈 uncaughtException is detected , shutting down ...`);
   process.exit(1);
 });
