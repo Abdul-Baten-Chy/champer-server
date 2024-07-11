@@ -32,6 +32,36 @@ const getSingleProducts = catchAsync(async (req: Request, res: Response) => {
     data: result,
   });
 });
+
+const getFilteredProducts = catchAsync(async (req: Request, res: Response) => {
+  const { category, minPrice, maxPrice } = req.query;
+
+  // Build the query object
+  const query: any = {};
+
+  if (category) {
+    query.category = category;
+  }
+
+  if (minPrice || maxPrice) {
+    query.price = {};
+    if (minPrice) {
+      query.price.$gte = parseFloat(minPrice as string);
+    }
+    if (maxPrice) {
+      query.price.$lte = parseFloat(maxPrice as string);
+    }
+  }
+
+  const result = await productService.filterdProductsFromDB(query);
+  return sendResponse(res, {
+    success: true,
+    statusCode: 200,
+    message: "Product filtered successfully",
+    data: result,
+  });
+});
+
 const deleteProduct = catchAsync(async (req: Request, res: Response) => {
   const id = req.params.id;
 
@@ -72,4 +102,5 @@ export const productController = {
   updateProduct,
   getSingleProducts,
   deleteProduct,
+  getFilteredProducts,
 };

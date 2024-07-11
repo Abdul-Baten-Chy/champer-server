@@ -9,6 +9,7 @@ import {
 const route = Router();
 
 route.get("/", productController.getAllProducts);
+route.get("/filtered", productController.getFilteredProducts);
 route.get("/:id", productController.getSingleProducts);
 route.delete("/:id", productController.deleteProduct);
 route.post(

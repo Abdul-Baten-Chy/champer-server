@@ -11,3 +11,8 @@ export type Tproducts = {
   images: string[];
   isFeatured: boolean;
 };
+
+export type queryOBj = {
+  category: string;
+  price?: object;
+};

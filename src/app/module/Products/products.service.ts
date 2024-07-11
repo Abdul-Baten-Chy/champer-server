@@ -1,3 +1,4 @@
+import AppError from "../../errors/AppError";
 import { Tproducts } from "./products.interface";
 import { Product } from "./products.model";
 
@@ -16,8 +17,20 @@ const getAllProductServices = async (searchTerm?: string) => {
 
   return result;
 };
+const filterdProductsFromDB = async (query) => {
+  const result = await Product.find(query);
+  if (result.length < 1) {
+    throw new AppError(404, "no data found");
+  }
+  return result;
+};
 const getSingleProductServices = async (id: string) => {
-  return await Product.findById(id);
+  const result = await Product.findById(id);
+
+  if (!result) {
+    throw new AppError(404, "no data found");
+  }
+  return result;
 };
 const deleteProductFromDB = async (id: string) => {
   return await Product.findByIdAndDelete(id);
@@ -48,4 +61,5 @@ export const productService = {
   updateProductInDB,
   getSingleProductServices,
   deleteProductFromDB,
+  filterdProductsFromDB,
 };
