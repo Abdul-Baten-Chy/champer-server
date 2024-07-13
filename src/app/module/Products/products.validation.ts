@@ -4,10 +4,9 @@ export const productValidation = z.object({
   body: z.object({
     name: z.string(),
     price: z.number(),
-    size: z.string().array(),
+    sizes: z.string().array(),
     rating: z.number(),
     category: z.string(),
-    stock: z.number(),
     quantity: z.number(),
     description: z.string(),
     brand: z.string(),

@@ -7,12 +7,10 @@ import { productService } from "./products.service";
 const getAllProducts = catchAsync(async (req: Request, res: Response) => {
   const { searchTerm } = req.query;
 
-  let result;
-  if (searchTerm) {
-    result = await productService.getAllProductServices(searchTerm as string);
-  } else {
-    result = await productService.getAllProductServices();
-  }
+  const result = await productService.getAllProductServices(
+    searchTerm as string
+  );
+
   return sendResponse(res, {
     success: true,
     statusCode: 200,

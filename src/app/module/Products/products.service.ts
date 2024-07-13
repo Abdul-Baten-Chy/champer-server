@@ -2,7 +2,7 @@ import AppError from "../../errors/AppError";
 import { Tproducts } from "./products.interface";
 import { Product } from "./products.model";
 
-const getAllProductServices = async (searchTerm?: string) => {
+const getAllProductServices = async (searchTerm) => {
   let result;
   if (searchTerm) {
     result = await Product.find({

@@ -11,7 +11,7 @@ const productSchema = new Schema<Tproducts>(
       type: Number,
       required: [true, "price is required"],
     },
-    size: {
+    sizes: {
       type: [String],
       required: [true, "size is required"],
     },
@@ -23,10 +23,7 @@ const productSchema = new Schema<Tproducts>(
       type: String,
       required: [true, "category is required"],
     },
-    stock: {
-      type: Number,
-      required: [true, "stock is required"],
-    },
+
     quantity: {
       type: Number,
       required: [true, "quantity is required"],
